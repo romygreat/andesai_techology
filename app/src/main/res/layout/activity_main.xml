@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/linshi"
+    tools:context="com.testclient.luominming.andesai_luo.MainActivitytest">
+
+    <TextView
+        android:id="@+id/IPconfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="IPButton"
+        android:text="log in"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="vertical"
+        android:textStyle="bold"
+        android:text="PM2.5测量值：\n" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="80dp"
+    android:orientation="horizontal"
+    android:padding="20dp"
+    android:id="@+id/linearLayout">
+    <Button
+        android:id="@+id/connect"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="WiFi连接" />
+    <Button
+        android:id="@+id/disconnect"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="断开连接" />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="50dp"
+    >
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/port"
+        android:layout_weight="1"
+        android:visibility="invisible"
+        android:hint="IP"
+        />
+    <EditText
+        android:id="@+id/port"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="port"
+        android:visibility="invisible"
+        />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="250dp"
+    android:orientation="horizontal"
+    android:padding="20dp"
+    android:id="@+id/linearLayout2">
+    <Button
+        android:id="@+id/aa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="POWER" />
+    <Button
+        android:id="@+id/bb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="LOAD" />
+    <Button
+        android:id="@+id/cc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="MODE" />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="280dp"
+    android:padding="30dp"
+    >
+    <Button
+        android:id="@+id/L1_on_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="4dp"
+        android:clickable="false"
+        android:textSize="12dp"
+        android:text="关机" />
+    <Button
+        android:id="@+id/L2_on_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加热关"
+        android:textSize="12dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="35dp"
+        />
+    <Button
+        android:id="@+id/L3_on_off"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_weight="1"
+        android:textSize="12dp"
+        android:text="手动模式" />
+</LinearLayout>
+    <TextView
+    android:id="@+id/show"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="400dp"
+    android:layout_marginLeft="200dp"
+    android:layout_marginStart="200dp"
+    android:text="输入IP与端口"
+        android:visibility="invisible"
+        />
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="invisible"
+        android:text="test" />
+
+</RelativeLayout>

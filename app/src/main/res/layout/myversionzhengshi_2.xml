@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MyVersion_2_backgroud"
+    >
+    <fragment
+        layout="@layout/time_wifi_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/fragment_time_wifi"
+        android:name="com.testclient.luominming.andesai_luo.Time_Wifi_Fragment"
+        />
+  <FrameLayout
+      android:id="@+id/fragment"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="30dp">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:layout_marginTop="30dp"
+          android:orientation="horizontal"
+          >
+              <TextView
+                  android:id="@+id/PM2_5"
+              android:layout_width="85dp"
+              android:layout_height="match_parent"
+              android:text="PM2.5\n000ug/m3 "
+              android:textColor="@color/qian_lv"
+              android:textStyle="bold"
+              android:layout_marginLeft="170dp"
+              android:textSize="@dimen/text_size"
+              android:textAlignment="center"/>
+          <TextView
+              android:id="@+id/CO_2"
+              android:layout_width="85dp"
+              android:layout_height="match_parent"
+              android:text="CO2\n0000PPM"
+              android:textColor="@color/qian_lv"
+              android:textStyle="bold"
+              android:layout_marginLeft="25dp"
+              android:textSize="@dimen/text_size"
+              android:textAlignment="center"/>
+          <TextView
+              android:id="@+id/HCHO"
+              android:layout_width="85dp"
+              android:layout_height="match_parent"
+              android:text="HCHO\n1200mg/m3"
+              android:textColor="@color/qian_lv"
+              android:textStyle="bold"
+              android:layout_marginLeft="30dp"
+              android:textSize="@dimen/text_size"
+              android:textAlignment="center"/>
+      </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/leftrightside"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_alignBottom="@+id/dealwith_repair"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
+        >
+        <ImageView
+            android:id="@+id/leftside"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/leftside"
+            android:visibility="visible" />
+        <ImageButton
+            android:id="@+id/xinfeng"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="33dp"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@+id/jinghua"
+            android:layout_toStartOf="@+id/jinghua"
+            android:layout_centerVertical="true"
+            android:src="@drawable/xinfeng" />
+        <ImageView
+            android:id="@+id/rightside"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_alignLeft="@+id/feng"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="-18dp"
+            android:layout_alignStart="@+id/feng"
+            android:src="@drawable/rightside" />
+        <!--android:layout_marginLeft="-18dp"-->
+        <ImageButton
+            android:id="@+id/jinghua"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:src="@drawable/jinghua"
+            android:layout_alignLeft="@+id/feng"
+            android:layout_marginLeft="110dp"
+            android:layout_centerVertical="true"
+            />
+        <ImageButton
+            android:id="@+id/feng"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="238dp"
+            android:layout_marginStart="238dp"
+            android:background="#fff"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hunfeng" />
+        <ImageButton
+            android:id="@+id/dealwith_repair"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+            android:background="@color/backgroud"
+            android:src="@drawable/dealwith" />
+    </RelativeLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="bottom"
+    android:paddingLeft="55dp"
+    android:layout_marginBottom="30dp"
+    ><ImageButton
+    android:id="@+id/sleepmode"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_marginLeft="75dp"
+    android:background="@color/backgroud"
+    android:scaleType="centerCrop"
+    android:src="@drawable/sleepmode" />
+    <ImageButton
+        android:id="@+id/formalmode"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="28dp"
+        android:background="@color/backgroud"
+        android:scaleType="centerCrop"
+        android:src="@drawable/formalmode" />
+    <ImageButton
+        android:id="@+id/automode"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="28dp"
+        android:background="@color/backgroud"
+        android:scaleType="centerCrop"
+        android:src="@drawable/automode" />
+    <ImageButton
+        android:id="@+id/highmode"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="28dp"
+        android:background="@color/backgroud"
+        android:scaleType="centerCrop"
+        android:src="@drawable/highmode" />
+    <ImageButton
+        android:id="@+id/furemode"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="28dp"
+        android:background="@color/backgroud"
+        android:scaleType="centerCrop"
+        android:src="@drawable/furemode" />
+    <ImageButton
+        android:id="@+id/powermode"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="28dp"
+        android:background="@color/backgroud"
+        android:scaleType="centerCrop"
+        android:src="@drawable/powermode" />
+    <ImageButton
+        android:id="@+id/forward1"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/backgroud"
+        android:scaleType="centerCrop"
+        android:src="@drawable/forward" />
+</LinearLayout>
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/leftrightside"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"
+        android:text="测试结果"
+        android:textColor="#fff" />
+  </FrameLayout>
+
+</RelativeLayout>

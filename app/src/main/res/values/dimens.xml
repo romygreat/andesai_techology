@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top">50dp</dimen>
+    <dimen name="text_size">15dp</dimen>
+    <dimen name="text_width">400dp</dimen>
+    <dimen name="line_margin">100dp</dimen>
+    <dimen name="deal_with">30dp</dimen>
+    <dimen name="padding_top">5dp</dimen>
+
+</resources>

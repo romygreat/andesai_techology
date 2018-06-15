@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MyVersion_2_backgroud"
+    android:orientation="vertical"
+    >
+    <TextView
+
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="200dp"
+        android:text="耗材更换"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textScaleX="1.6"
+        android:textSize="16dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/background_green"
+        android:layout_marginLeft="78dp"
+        android:layout_marginRight="78dp"
+        >
+        <TextView
+            android:id="@+id/costmatirier"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="60dp"
+        android:layout_gravity="center"
+            android:gravity="center|left"
+        android:text="HEAP更换"
+        android:scaleX="1.6"
+        android:textColor="@color/white"
+        android:textSize="16dp" />
+        <TextView
+            android:id="@+id/HEAP"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="剩余95%"
+           android:layout_gravity="right"
+            android:textAlignment="center"
+            android:gravity="center|right"
+            android:scaleX="1.6"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#27b"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginRight="78dp"
+        >
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="center"
+            android:gravity="center|left"
+            android:text="活性炭滤网更换"
+            android:scaleX="1.6"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/life_tan"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="剩余95%"
+            android:layout_gravity="right"
+            android:textAlignment="center"
+            android:gravity="center|right"
+            android:scaleX="1.6"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:background="#27b"
+        android:layout_marginLeft="78dp"
+        android:layout_marginRight="78dp"
+        >
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="center"
+            android:gravity="center|left"
+            android:text="初效滤网更换"
+            android:scaleX="1.6"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/chuxiao"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="剩余95%"
+            android:layout_gravity="right"
+            android:textAlignment="center"
+            android:gravity="center|right"
+            android:scaleX="1.6"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    </LinearLayout>
+    <include
+        android:id="@+id/forwarorback"
+        layout="@layout/layout_forward_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+    </include>
+
+</LinearLayout>

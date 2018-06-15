@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">安德赛</string>
+    <string name="confirm">confirm</string>
+    <string name="PM2_5_title">PM2.5\n </string>
+    <string name="CO_2_title">CO2\n</string>
+    <string name="HCHO">HCHO\n</string>
+    <string name="PM2_5_Unit">ug/m3</string>
+    <string name="CO_2_Unit">PPM</string>
+    <string name="HCHO_Unit">mg/m3</string>
+    <string name="accident_text">故障报警</string>
+
+</resources>

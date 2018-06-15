@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing2"
+    tools:context="com.testclient.luominming.andesai_luo.MainActivitytest">
+    <TextView
+        android:id="@+id/IPconfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="IPButton"
+        android:text="IP与端口确认"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        android:textSize="20sp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        >
+        <Button
+            android:id="@+id/disconnect"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:text="断开连接" />
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/port"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:hint="IP"
+            android:textStyle="bold"
+            />
+        <EditText
+            android:id="@+id/port"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="port"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            />
+    </LinearLayout>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="390dp"
+   android:layout_centerVertical="true"
+    android:layout_centerInParent="true"
+    android:background="@drawable/backgroud_all"
+    >
+    <ImageButton
+        android:id="@+id/connect"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:background="@color/backgroud"
+        android:layout_marginTop="90dp"
+        android:scaleType="centerCrop"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/wifi"
+        />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    android:layout_marginTop="250dp"
+    android:orientation="horizontal"
+    android:layout_weight="1"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        >
+
+        <ImageButton
+            android:id="@+id/aa"
+            android:layout_width="47dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="70dp"
+            android:background="@color/backgroud"
+            android:scaleType="centerCrop"
+            android:src="@drawable/powerpic" />
+
+        <TextView
+            android:id="@+id/L1_on_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="78dp"
+            android:text="关机"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <ImageButton
+        android:id="@+id/bb"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/backgroud"
+        android:scaleType="centerCrop"
+        android:src="@drawable/loadpic"
+        />
+    <TextView
+        android:id="@+id/L2_on_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="加热关"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <ImageButton
+        android:id="@+id/cc"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/backgroud"
+        android:scaleType="centerCrop"
+        android:src="@drawable/modepic"
+        />
+    <TextView
+        android:id="@+id/L3_on_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:text="手动模式"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        />
+</LinearLayout>
+
+</LinearLayout>
+    <Button
+        android:id="@+id/result"
+        android:layout_width="155dp"
+        android:layout_height="80dp"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="— — — "
+        android:textAlignment="center"
+        android:gravity="center"
+        android:clickable="false"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:text="PM2.5测量值"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+</FrameLayout>
+
+</RelativeLayout>

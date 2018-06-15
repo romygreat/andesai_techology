@@ -1,0 +1,478 @@
+package com.testclient.luominming.testclient;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.DhcpInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Bundle;
+import android.text.LoginFilter;
+import android.text.format.Formatter;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.NetworkInterface;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
+
+public class MainActivitytest extends Activity implements View.OnClickListener {
+    String  hostName="192.168.43.178";
+    int port=30000;
+    int localport=40696;
+    String TAG="test";
+    TextView result,show;
+    Button send;
+    EditText input,portedit;
+    int sercretNum=1,sercretNum2=1;
+    private Button connect;
+    private Button aButton,bButton,cButton;
+    private Button disconnect;
+    private WifiAdmin mWifiAdmin;
+    public String content;
+    String inputContent;
+    MyThread clientTHread;
+    boolean IsreadFirst=true;
+    Socket socket = new Socket();
+    boolean IsSendOK=true;
+    final  InetSocketAddress inetSocketAddress=new InetSocketAddress(hostName,port);
+
+    public  Handler myHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 1) {
+//                result.append("server:" + msg.obj + "\n");
+                if(!msg.obj.equals(null))
+                result.setText("PM2.5:" + msg.obj );
+                Log.i("readlog", "handleMessage: msg"+msg.obj);
+                Log.i("readlog", "handleMessage: mgsSTring"+(String)msg.obj);
+               // show.setText("PM2.5：");
+            }
+        }
+    };
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView ();
+        result.setMovementMethod(ScrollingMovementMethod.getInstance());
+        mWifiAdmin = new WifiAdmin(MainActivitytest.this);
+        clickEvent();
+
+//        send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//               // new QueryIp().start();
+//            }
+//        });
+    }
+    private void setListener() {
+        connect.setOnClickListener(MainActivitytest.this);
+        disconnect.setOnClickListener(MainActivitytest.this);
+        aButton.setOnClickListener(this);
+        bButton.setOnClickListener(this);
+        cButton.setOnClickListener(this);
+        show.setOnClickListener(this);
+        send.setOnClickListener(this);
+    }
+    private void clickEvent() {
+//        aButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(sercretNum2>=10) show.setVisibility(View.INVISIBLE);
+//                inputContent = input.getText().toString();
+//              //  result.append("安德塞APP客户端:" + inputContent + "test\n");
+//                result.setText("安德塞APP客户端:" + inputContent);
+//                sercretNum2++;
+//                new MyThread("a").start();
+//            }
+//        });
+
+    }
+    private void initView() {
+        connect = (Button) findViewById(R.id.connect);
+        disconnect = (Button) findViewById(R.id.disconnect);
+        portedit=findViewById(R.id.port);
+        aButton=findViewById(R.id.aa);
+        result = (TextView) findViewById(R.id.result);
+        send = (Button) findViewById(R.id.send);
+        input = (EditText) findViewById(R.id.input);
+        bButton=findViewById(R.id.bb);
+        cButton=findViewById(R.id.cc);
+        show=findViewById(R.id.show);
+        setListener();
+    }
+    class MyThread extends Thread {
+        String received="";
+        int i=1;
+        String before="before";
+        BufferedReader bff=null;
+        Message msg;
+        public MyThread(String str) {
+            content = str;
+        }
+        @Override
+        public void run() {
+            //定义消息
+            boolean b=true;
+            Log.i(TAG, "run: in socketName\n"+socket);
+            Log.i(TAG, "run: contentInittial::"+content);
+          // while (true)
+            {
+
+                OutputStream ou;
+                try {
+                    Log.i(TAG, "run: content"+content);
+                    if(!socket.isConnected()){
+                    socket.connect(inetSocketAddress,5000);
+                        Log.i(TAG, "run: connect");
+                      //  socket.setSoTimeout(100);
+
+
+                        Log.i(TAG, "run: bff"+content);
+                    }
+                    Log.i(TAG, "run: connected");
+                    ou= socket.getOutputStream();
+                    Log.i(TAG, "run: outpustream");
+//                socket.connect(new InetSocketAddress(getlocalip(), 30000), 1000);
+                    //获取输入输出流
+                    //获取输出输出流
+                    //Log.i(TAG, "run: content12");
+                    //向服务器发送信息
+                   // if(!content.equals(before))
+                    Log.i(TAG, "run: writebegin");
+                    {
+                        ou.write(content.getBytes("utf-8"));
+                        Log.i(TAG, "run: sendcontent1"+content);
+                        Log.i(TAG, "run: content.getbytesafter");
+                        ou.flush();
+//                      ou.write("test".getBytes("utf-8"));
+//                        ou.flush();
+                    }
+                   // if(IsreadFirst)
+                    {
+                        IsreadFirst=false;
+                        new ReadThread(socket).start();
+
+                    }
+                  //  content=before;
+                    Log.i(TAG, "run: begin in socket in");
+                    Log.i(TAG, "run: EOF");
+                    // }
+                    //读取发来服务器信息
+
+
+//                    if(received.contains("test")){
+//                        int i=0;
+//                        if(IsSendOK)
+//                        {
+//                            if(i==0)
+//                                new SendOkThread().start();
+//                            Log.i("test", "run: i"+i);
+//                            i++;
+//                        }
+//                    }
+
+
+                    //关闭各种输入输出流
+//                    ou.close();
+//                  //  socket.close();
+////                  IsSendOK=false;
+                } catch (SocketTimeoutException aa) {
+                    //连接超时 在UI界面显示消息
+                    msg.obj =  "安德赛提醒您,服务器连接失败！请检查网络是否打开";
+                    //发送消息 修改UI线程中的组件
+                    myHandler.sendMessage(msg);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "run: IOExeption");
+                }
+                finally {
+                    Log.i(TAG, "run: finally");
+                }
+            }
+        }
+
+    }
+    public class ReadThread extends Thread{
+        Socket socket;
+        String before;
+        BufferedReader bff=null;
+        String result = "";
+        String buffer ="";
+        public ReadThread(Socket sk){
+         socket=sk;
+        }
+        @Override
+        public void run() {
+             while(true)
+            {
+                Log.i(TAG, "run: runreadin");
+                InputStream socketInputStream= null;
+                try {
+                    socketInputStream = socket.getInputStream();
+                    bff = new BufferedReader(new InputStreamReader(
+                            socketInputStream));
+                    while ((buffer = bff.readLine()) != null)
+                    {
+                        result = buffer;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "run: IOException");
+                }
+                {
+                }
+                Log.i("readlog", "run: readbegin");
+
+                Log.i("tes","run:buffer end");
+
+                Message msg = new Message();
+                msg.what = 1;
+                msg.obj = result.toString();
+                //发送消息 修改UI线程中的组件
+                myHandler.sendMessage(msg);
+                 String received=result.toString();
+                Log.i("readlog", "run: sendcontent2"+content);
+                Log.i("readlog", "run: resultreceived:"+received);
+                // socketInputStream.reset();
+
+                //bff.close();
+            }
+        }
+    }
+
+    private String getlocalip() {
+        Log.i(TAG, "getlocalip: ");
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(getApplicationContext().WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int ipAddress = wifiInfo.getIpAddress();
+        //  Log.d(Tag, "int ip "+ipAddress);
+        DhcpInfo dhcpInfo=wifiManager.getDhcpInfo();
+        Log.i(TAG, "getlocalip: "+ Formatter.formatIpAddress(dhcpInfo.gateway));
+
+        Log.i(TAG, "getlocalipserver: "+Formatter.formatIpAddress(dhcpInfo.serverAddress));
+        Log.i(TAG, "wifiInfoID: "+wifiInfo.getNetworkId());
+
+        Log.i(TAG, "getlocalip: "+wifiInfo.getSSID());//路由器名称
+        if (ipAddress == 0) return null;
+        return ((ipAddress & 0xff) + "." + (ipAddress >> 8 & 0xff) + "."
+                + (ipAddress >> 16 & 0xff) + "." + (ipAddress >> 24 & 0xff));
+    }
+    public String ipPrefix(String ip){
+        String ipalllocal;
+        String test="192.168.1.168";
+       String[]  test1=test.split("\\.");
+        String IpPrefix=test1[0]+"."+test1[1]+"."+test1[2]+".";
+       // ipalllocal=test.substring(0,10);
+        Log.i(TAG, "getlocalip: ");
+        Log.i("localnet", "localNet: "+IpPrefix);
+        return IpPrefix;
+    }
+    public String getConenctedlocalddress(String ip) throws IOException {
+        boolean Isreable=false;
+        for(int i=1;i<256;i++){
+            String host=ip+i;
+            try {
+                InetAddress ia=InetAddress.getByName(host);
+              Isreable=  ia.isReachable(5000);
+              if(Isreable){
+                  Log.i(TAG, "getConenctedlocalddress: "+host);
+              }
+               // Log.i("test", "getConenctedlocalddress: ");
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
+        }
+        return  null;
+    }
+    class QueryIp extends Thread{
+        @Override
+        public void run() {
+          //  super.run();
+            try {
+                String Ipaddress=getConenctedlocalddress(ipPrefix(getlocalip()));
+                Log.i(TAG, "run: "+Ipaddress);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void IPButton(View view)
+    {
+//        if(sercretNum>=3)
+
+//            if(sercretNum==3)
+//            dayin("已经开启输入IP与PORT");
+
+        String IP=input.getText().toString();
+        String port1=portedit.getText().toString();
+        if(!port1.equals("")){
+        port=Integer.parseInt(port1);}
+        if(!IP.equals("")){
+        hostName=IP;}
+
+//        if(IP.contains(".")){
+//            hostName=IP;
+//            Log.i(TAG, "IPButton: "+IP);
+//        }
+//        else{
+//            try{
+//            if(!IP.equals(""))
+//            port=Integer.parseInt(IP);
+//            Log.i(TAG, "IPButton: "+port);}
+//            catch (Exception e){
+//            e.printStackTrace();
+//            }
+//        }
+//
+//        }
+//        sercretNum++;
+    }
+    public void openNetCard() {
+        mWifiAdmin.openNetCard();
+    }
+
+    public void closeNetCard() {
+        mWifiAdmin.closeNetCard();
+    }
+
+    public void checkNetCardState() {
+        mWifiAdmin.checkNetCardState();
+    }
+
+    public void scan() {
+        mWifiAdmin.scan();
+    }
+
+    public void connect() {
+        mWifiAdmin.connect();
+//		startActivityForResult(new Intent(
+//				android.provider.Settings.ACTION_WIFI_SETTINGS), 0);
+        startActivity(new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS));
+    }
+
+    public void disconnect() {
+        mWifiAdmin.disconnectWifi();
+
+    }
+    public void checkNetWorkState() {
+        mWifiAdmin.checkNetWorkState();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.connect:
+                connect();
+                Log.i("test", "onClick: "+getlocalip());
+                break;
+            case R.id.disconnect:disconnect();break;
+            case R.id.aa:
+//                content="a";break;
+//               Log.i(TAG, "onClick: aaa");
+//                sendMessageButton("ABC");break;
+                new MyThread("ABC").start();
+                 dayin(content);
+                Log.i(TAG, "onClick: test"+socket);
+            case R.id.bb:
+//                content="b";break;
+                sendMessageButton("b");break;
+            case R.id.cc:
+                dayin("IP："+hostName+" "+"端口："+port);
+                sendMessageButton("c");
+               input.setText(getLocalIpAddress());
+                break;
+            case R.id.show:
+                showguanwang();break;
+            case R.id.send:
+                String inputContent = input.getText().toString();
+                result.setText("安德塞APP客户端:" + inputContent + "\n");
+                //启动线程 向服务器发送和接收信息
+                // localNet("ip");
+                Log.i("Isreable", "onClick: ");
+                // if(clientTHread==null){
+                clientTHread= new MyThread(inputContent);
+                clientTHread.start();break;
+            default:
+                Log.i(TAG, "onClick: default");
+                break;
+        }
+    }
+    private void showguanwang() {
+//        Uri uri = Uri.parse("https://www.riskstorm.com/company/91441300MA4WK7QB7X#event");//密码qjfd
+//        //Uri uri = Uri.parse("https://pan.baidu.com/disk/home?errno=0&errmsg=Auth%20Login%20Sucess&&bduss=&ssnerror=0#list/vmode=list&path=%2F%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87");
+//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//        startActivity(intent);
+       // if(sercretNum>=3)
+        {
+          //  if(sercretNum==3)
+               // dayin("已经开启输入IP与PORT");
+            String IPP=input.getText().toString();
+            if(IPP.contains(":")){
+               String[] IPPort=new String[2];
+               IPPort=IPP.split(":");
+               hostName=IPPort[0];
+               port=Integer.parseInt(IPPort[1]);
+            }
+    }
+        dayin("IP："+hostName+" "+"端口："+port);
+    }
+    private void sendMessageButton(String a) {
+        {     content=a;
+//            String inputContent = input.getText().toString();
+//            result.append("安德塞APP客户端:" + inputContent + "\n");
+           if(clientTHread==null)
+            {
+                clientTHread=new MyThread(a);
+                clientTHread.start();
+                IsSendOK=true;
+            }
+           // new MyThread(a).start();
+        }
+    }
+ public void dayin(String str){
+     Toast.makeText(MainActivitytest.this,str,Toast.LENGTH_SHORT).show();
+ }
+    public String getLocalIpAddress()
+    {try
+        {for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();)
+            {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();)
+                {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()&!inetAddress.isLinkLocalAddress())
+                    {  Log.i(TAG, "getLocalIpAddress: "+inetAddress.getHostAddress().toString());
+                        return inetAddress.getHostAddress().toString();
+
+                    }
+                }
+            }
+        }
+        catch (SocketException ex)
+        {
+            Log.e("IpAddress", ex.toString());
+        }
+        return null;
+    }
+
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="red">#ff0000</color>
+    <color name="MyVersion_2_backgroud">#000</color>
+    <color name="white">#ffff</color>
+    <color name="backgroud">#222</color>
+    <color name="qian_lv">#43e0ff</color>
+    <color name="background_green">#27b</color>
+
+</resources>
